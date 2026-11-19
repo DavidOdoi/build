@@ -1,0 +1,328 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px), #f7f7f4;
+  background-size: 28px 28px, 28px 28px, auto;
+  color: #111;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.topbar {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.brandWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #f66b1a;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.brand {
+  font-size: clamp(2.1rem, 2vw + 0.5rem, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+
+.dot {
+  color: #f66b1a;
+  font-size: 2.2rem;
+  font-weight: 900;
+}
+
+.headerLink {
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 14px 24px;
+  color: #111;
+  font-weight: 700;
+}
+
+.main {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 42px 0 80px;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: rgba(17, 17, 17, 0.7);
+  margin-bottom: 18px;
+}
+
+.breadcrumbs a {
+  color: #111;
+}
+
+.hero {
+  padding-top: 12px;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f66b1a;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 5vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.08em;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.intro {
+  max-width: 860px;
+  font-size: clamp(1.15rem, 1vw + 0.8rem, 1.7rem);
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.76);
+}
+
+.calculatorCard,
+.contentSection {
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.04);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+  padding: 0 12px 0 0;
+}
+
+.inputGroup input,
+.inputGroup select {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1.15rem;
+  padding: 16px 14px;
+  color: #111;
+  outline: none;
+}
+
+.inputGroup select {
+  max-width: 110px;
+  border-left: 1px solid rgba(17, 17, 17, 0.08);
+  padding-left: 12px;
+}
+
+.unitTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 0 10px;
+  font-size: 0.95rem;
+  color: rgba(17, 17, 17, 0.72);
+}
+
+.error {
+  margin-top: 16px;
+  background: rgba(198, 36, 36, 0.08);
+  border: 1px solid rgba(198, 36, 36, 0.25);
+  color: #9a1f1f;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 600;
+}
+
+.resultPanel {
+  margin-top: 24px;
+  border-radius: 20px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(246, 107, 26, 0.1), rgba(255, 255, 255, 0.8));
+  border: 1px solid rgba(246, 107, 26, 0.18);
+}
+
+.resultHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.resultHeader span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(17, 17, 17, 0.7);
+  font-weight: 700;
+}
+
+.resultHeader strong {
+  font-size: clamp(1.8rem, 2vw + 0.7rem, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.resultCard span {
+  font-size: 0.7rem;
+  color: rgba(17, 17, 17, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.resultCard strong {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.resultCard small {
+  color: rgba(17, 17, 17, 0.7);
+  font-size: 0.9rem;
+}
+
+.contentSection {
+  margin-top: 28px;
+}
+
+.contentSection h2,
+.contentSection h3 {
+  margin: 26px 0 14px;
+  letter-spacing: -0.06em;
+}
+
+.contentSection h2 {
+  font-size: clamp(2rem, 2vw + 1rem, 3rem);
+}
+
+.contentSection h3 {
+  font-size: clamp(1.5rem, 1.2vw + 0.8rem, 2.1rem);
+}
+
+.contentSection p,
+.contentSection li {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: rgba(17, 17, 17, 0.8);
+}
+
+.contentSection a {
+  color: #111;
+  text-decoration: underline;
+}
+
+.mathBox {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-left: 4px solid #f66b1a;
+  background: rgba(246, 107, 26, 0.05);
+  border-radius: 12px;
+}
+
+.mathBox p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.faqList {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.faqItem {
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 18px 20px;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.relatedGrid a {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .formGrid,
+  .resultGrid,
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resultHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
