@@ -85,26 +85,17 @@
   padding-top: 12px;
 }
 
-.kicker {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #f66b1a;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
 .hero h1 {
-  font-size: clamp(3rem, 5vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: -0.08em;
+  font-size: clamp(2.45rem, 5vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
   font-weight: 900;
   margin-bottom: 18px;
 }
 
 .intro {
-  max-width: 890px;
-  font-size: clamp(1.15rem, 1vw + 0.8rem, 1.7rem);
+  max-width: 65ch;
+  font-size: clamp(1rem, 0.7vw + 0.85rem, 1.25rem);
   line-height: 1.5;
   color: rgba(17, 17, 17, 0.76);
 }
@@ -117,11 +108,37 @@
   box-shadow: 0 10px 24px rgba(17, 17, 17, 0.04);
 }
 
+.calculatorHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.exampleButton {
+  padding: 9px 13px;
+  border: 1px solid #8a320a;
+  border-radius: 9px;
+  background: #fff;
+  color: #8a320a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fieldHint {
+  color: #555950;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
 .modeRow {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 20px;
+  margin: 16px 0 20px;
   background: rgba(17, 17, 17, 0.03);
   border-radius: 16px;
   padding: 8px;
@@ -145,14 +162,7 @@
 
 .formGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
-  gap: 18px;
-  margin-bottom: 18px;
-}
-
-.formGridSingle {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
   margin-bottom: 18px;
 }
@@ -187,7 +197,6 @@
   font-size: 1.15rem;
   padding: 16px 14px;
   color: #111111;
-  outline: none;
 }
 
 .inputGroup select {
@@ -250,7 +259,7 @@
 
 .resultGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -264,107 +273,190 @@
   padding: 16px;
 }
 
-.resultCard span {
+.resultCard dt {
   font-size: 0.8rem;
   color: rgba(17, 17, 17, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-.resultCard strong {
+.resultCard dd {
   font-size: 1.45rem;
   font-weight: 800;
 }
 
 .resultCard small {
+  display: block;
+  margin-top: 6px;
+  font-weight: 400;
   color: rgba(17, 17, 17, 0.7);
   font-size: 0.9rem;
 }
 
 .contentSection {
-  background: rgba(255, 255, 255, 0.34);
-  border: 1px solid rgba(17, 17, 17, 0.08);
+  width: min(100%, 76ch);
+  margin: 0 auto;
+  display: grid;
+  gap: 32px;
+  background: #fff;
+  border: 1px solid #dfdfd8;
   border-radius: 24px;
-  padding: 30px 28px;
+  padding: clamp(16px, 4vw, 36px);
+}
+
+.contentSection section {
+  display: grid;
+  gap: 14px;
 }
 
 .contentSection h2,
-.contentSection h3 {
-  margin: 28px 0 14px;
-  letter-spacing: -0.06em;
-}
-
-.contentSection h2 {
-  font-size: clamp(2rem, 2vw + 1rem, 3rem);
+.calculatorHeading h2 {
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
 }
 
 .contentSection h3 {
-  font-size: clamp(1.5rem, 1.2vw + 0.8rem, 2.1rem);
+  font-size: clamp(1.2rem, 1.3vw + 0.65rem, 1.55rem);
+  line-height: 1.3;
 }
 
 .contentSection p,
-.contentSection li {
-  font-size: 1.08rem;
-  line-height: 1.7;
-  color: rgba(17, 17, 17, 0.8);
+.contentSection li,
+.contentSection td,
+.contentSection th {
+  line-height: 1.65;
+  color: #363832;
+}
+
+.contentSection a {
+  color: #8a320a;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.jumpLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dfdfd8;
 }
 
 .mathBox {
-  margin-top: 18px;
-  padding: 18px 20px;
-  border-left: 4px solid #f66b1a;
-  background: rgba(246, 107, 26, 0.05);
-  border-radius: 12px;
+  padding: 16px 16px 16px 40px;
+  border-left: 4px solid #a63a08;
+  background: #fbf3ed;
+  border-radius: 8px;
 }
 
-.mathBox p {
-  margin: 0;
+.mathBox li + li,
+.relatedList li + li {
+  margin-top: 8px;
+}
+
+.measurementFigure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.measurementFigure figcaption {
+  margin-top: 8px;
+  color: #555950;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.tableWrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableWrap caption {
+  padding-bottom: 10px;
+  text-align: left;
   font-weight: 700;
+}
+
+.tableWrap th,
+.tableWrap td {
+  padding: 10px;
+  border-bottom: 1px solid #dfdfd8;
+  text-align: left;
+}
+
+.tableWrap thead {
+  background: #f3f3ee;
 }
 
 .faqList {
-  display: grid;
-  gap: 16px;
-  margin-top: 20px;
+  border-block: 1px solid #dfdfd8;
 }
 
-.faqItem {
-  border: 1px solid rgba(17, 17, 17, 0.08);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 18px 20px;
+.faqItem + .faqItem {
+  border-top: 1px solid #dfdfd8;
 }
 
-.relatedGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.relatedGrid a {
-  display: block;
-  padding: 14px 16px;
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.6);
+.faqItem summary {
+  cursor: pointer;
+  padding: 14px 2px;
+  color: #20231f;
   font-weight: 700;
+  line-height: 1.45;
 }
 
-@media (max-width: 760px) {
+.faqItem p {
+  padding: 0 0 14px 18px;
+}
+
+.relatedList {
+  padding-left: 1.25em;
+}
+
+.page :is(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #8a320a;
+  outline-offset: 3px;
+}
+
+.inputGroup :is(input, select):focus-visible {
+  outline-offset: -3px;
+  border-radius: 8px;
+}
+
+@media (max-width: 920px) {
+  .resultGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding-top: 24px;
+  }
+
   .topbar {
     flex-wrap: wrap;
     gap: 12px;
   }
 
   .formGrid,
-  .resultGrid,
-  .relatedGrid {
-    grid-template-columns: 1fr;
+  .resultGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calculatorCard,
+  .resultPanel {
+    padding: 16px;
   }
 
   .resultHeader {
     flex-direction: column;
     align-items: flex-start;
+    gap: 6px;
   }
 }

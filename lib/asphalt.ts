@@ -27,7 +27,7 @@ export type AsphaltResult = {
   weightShortTons: number;
   weightMetricTonnes: number;
   orderTons: number;
-  estimatedCost: number;
+  estimatedCost: number | null;
 };
 
 export const defaultAsphaltInputs = (): AsphaltInputs => ({
@@ -42,11 +42,11 @@ export const defaultAsphaltInputs = (): AsphaltInputs => ({
   areaUnit: "ft2",
   density: "145",
   allowance: "5",
-  price: "120",
+  price: "",
 });
 
 const parseFiniteNumber = (value: string | number | undefined): number | null => {
-  if (value === undefined || value === null || value === "") return null;
+  if (value === undefined || (typeof value === "string" && value.trim() === "")) return null;
   const parsed = typeof value === "number" ? value : Number(value);
   return Number.isFinite(parsed) ? parsed : null;
 };
@@ -72,7 +72,9 @@ export const validateAsphaltInputs = (input: AsphaltInputs): string | null => {
   if (thicknessValue === null || thicknessValue <= 0) return "Asphalt thickness must be greater than zero.";
   if (densityValue === null || densityValue <= 0) return "Asphalt density must be greater than zero.";
   if (allowanceValue === null || allowanceValue < 0) return "Waste allowance must be zero or greater.";
-  if (priceValue !== null && priceValue < 0) return "Price per ton cannot be negative.";
+  if (input.price.trim() !== "" && (priceValue === null || priceValue < 0)) {
+    return "Price per US short ton must be zero or greater.";
+  }
 
   return null;
 };
@@ -107,23 +109,6 @@ const convertAreaToSquareFeet = (value: number, unit: AreaUnit): number => {
   }
 };
 
-const convertThicknessToFeet = (value: number, unit: LengthUnit): number => {
-  switch (unit) {
-    case "ft":
-      return value;
-    case "m":
-      return value * 3.280839895013123;
-    case "yd":
-      return value * 3;
-    case "in":
-      return value / 12;
-    case "cm":
-      return value / 30.48;
-    default:
-      return value;
-  }
-};
-
 export const calculateAsphalt = (input: AsphaltInputs): AsphaltResult => {
   const validationError = validateAsphaltInputs(input);
   if (validationError) {
@@ -139,10 +124,10 @@ export const calculateAsphalt = (input: AsphaltInputs): AsphaltResult => {
   const areaSqFt = input.mode === "rectangular"
     ? lengthFeet * widthFeet
     : convertAreaToSquareFeet(parseFiniteNumber(input.area) as number, input.areaUnit);
-  const thicknessFeet = convertThicknessToFeet(parseFiniteNumber(input.thickness) as number, input.thicknessUnit);
+  const thicknessFeet = convertLengthToFeet(parseFiniteNumber(input.thickness) as number, input.thicknessUnit);
   const densityLbPerFt3 = parseFiniteNumber(input.density) as number;
   const allowancePercent = parseFiniteNumber(input.allowance) as number;
-  const pricePerTon = parseFiniteNumber(input.price) ?? 0;
+  const pricePerTon = parseFiniteNumber(input.price);
 
   const volumeCubicFt = areaSqFt * thicknessFeet;
   const volumeCubicYd = volumeCubicFt / 27;
@@ -151,7 +136,7 @@ export const calculateAsphalt = (input: AsphaltInputs): AsphaltResult => {
   const weightShortTons = weightLb / 2000;
   const weightMetricTonnes = weightLb * 0.00045359237;
   const orderTons = weightShortTons * (1 + allowancePercent / 100);
-  const estimatedCost = orderTons * pricePerTon;
+  const estimatedCost = pricePerTon === null ? null : orderTons * pricePerTon;
 
   return {
     areaSqFt,
